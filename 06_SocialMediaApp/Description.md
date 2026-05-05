@@ -38,25 +38,25 @@
            - Hit the postman, header: Key: Accept value: application/xml or Json. 
         ![img.png](Images/img_4.png)
     
-        - Versioning API : creating versioning controller for that.
+        ##  Versioning API : creating versioning controller for that.
           - ![img.png](Images/img_6.png)
           - ![img.png](Images/img_7.png)
              - Do the configuration in Application properties
              - There are new ways in spring boot newer versions check those as well.
-        - HATEOS
+        ## HATEOS
             - ![img.png](Images/img_8.png)
             - First Inject the dependency in the pom file
             - While retrieving the users, we want the user to give link back as well
             - For that we will wrap the User into EntityModel in GetById controller, nd to create link there is another class which is WebMvcLinkBuilder
-        - Static Filtering
-              - ![img.png](Images/img_9.png)
-              - Make use of @JsonProperty on user Bean class.
-              - Return only selected fields : Filtering
+        ## Static Filtering
+          - ![img.png](Images/img_9.png)
+          - Make use of @JsonProperty on user Bean class.
+          - Return only selected fields : Filtering
               - 1. static : @JsonIgnoreProperties, @JsonIgnore
               - 2. Dynamic : Define the views.  
         - Spring Boot Actuators
-              - Add the dependency, hit /actuators
-              - want to manage the endpoints, management.endpoints.web.exposure.includes=*
+              1. Add the dependency, hit /actuators
+              2. want to manage the endpoints, management.endpoints.web.exposure.includes=*
         - HAL explorer
               - 
               - add the dependency spring-data-rest-hal-explorer
@@ -70,22 +70,22 @@
       - for that we use (fetch = fetchType.Lazy) 
 
   - Now we will build Post APIs: 
-          1. Retrieve all posts for a User : GET/users/id/posts
-          2. Create a post for User        : POST/users/{id}/posts
+       -   Retrieve all posts for a User : GET/users/id/posts
+       -   Create a post for User        : POST/users/{id}/posts
 
-- Now we are switching from One database to another.
-     - Which is Sql database : inject the dependency and configure the app properties file
-     - Run this script in the terminal to launch MYSQL as docker container.
+  ## Now we are switching from One database to another.
+     -  Which is Sql database : inject the dependency and configure the app properties file
+     -  Run this script in the terminal to launch MYSQL as docker container.
                  docker run
-                  --detach 
-                  --env MYSQL_ROOT_PASSWORD=dummypassword 
-                  --env MYSQL_USER=social-media-user 
-                  --env MYSQL_PASSWORD=dummypassword 
-                  --env MYSQL_DATABASE=social-media-database
-                  --name mysql 
+                   --detach 
+                   --env MYSQL_ROOT_PASSWORD=dummypassword 
+                   --env MYSQL_USER=social-media-user 
+                   --env MYSQL_PASSWORD=dummypassword 
+                   --env MYSQL_DATABASE=social-media-database
+                   --name mysql 
                   --publish 3306:3306 mysql:8-oracle
-     - Now create insert data using postman and hit the endpoints.
-       - Also run these commands in mysql shell, to see table and all.
+     -  Now create insert data using postman and hit the endpoints.
+     -  Also run these commands in mysql shell, to see table and all.
                          mysqlsh
                          \connect social-media-user@localhost:3306
                          \sql
@@ -94,15 +94,15 @@
                          select * from post;
                          \quit
 
-- Spring Security
-             - By applying dependency, not able to access the endpoint.
-             - Do the custom config for creating own username & password in app prop file.
-             - whenever you send a request, spring security intercept that request and would execute a series of filters, called filter chains.
-                     - there are series of filter which are checked like :
-                                    - All the requests should be authenticated
-                                    - If a request is not authenticated, a web page is shown
-                                    - CSRF -> Post, Put
-                     - Now If we want override these config and make our own, we will create Spring config for that.
+  ## Spring Security
+             -  By applying dependency, not able to access the endpoint.
+             -  Do the custom config for creating own username & password in app prop file.
+             -  whenever you send a request, spring security intercept that request and would execute a series of filters, called filter chains.
+                     -  there are series of filter which are checked like :
+                                    -  All the requests should be authenticated
+                                    -  If a request is not authenticated, a web page is shown
+                                    -  CSRF -> Post, Put
+                     -  Now If we want override these config and make our own, we will create Spring config for that.
 
 - JUnit
        - ![img.png](Images/img_9.1.png)
